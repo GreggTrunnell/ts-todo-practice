@@ -1,44 +1,31 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-
   type Todo = {
-    todo: string,
-    urgency: number,
-    date: number,
-    completed: false
-  }
+    todo: string;
+    urgency: number;
+    date: number;
+    completed: false;
+  };
 
-  type newTodo ={
-    newTodo: string,
-    newUrgency: number,
-    newDate: number,
-  }
-  
-  const [todo, setTodo] = useState<Todo[]>([])
-  const [count, setCount] = useState<number>(0);
+  type NewTodo = Omit<Todo, "completed">;
 
-  const addTodo = (newItem: string, newUrgency: number, newDate: number ) => {
+  const [todo, setTodo] = useState<Todo[]>([]);
+  const [newTodo, setNewTodo] = useState<NewTodo[]>([]);
+
+  const addTodo = (todo: NewTodo) => {
     console.log("addTodo hit");
- 
-  }
+  };
 
   return (
     <div>
-   
-        <h1>
-          Typescript TODO
-        </h1>
-        <button onClick={() => setCount((count) => count + 2)}>
-          count is {count}
-        </button>
-        <div>
-        <button onClick={addTodo}>addtodo</button>
-        </div>
-    
+      <h1>Typescript TODO</h1>
+      <div>
+        <input placeholder="Add a Task"></input>
+      </div>
     </div>
-  )
+  );
 }
 
 export default App;
